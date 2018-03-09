@@ -215,7 +215,7 @@ namespace Biometric_Attendance_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Please fill in all fields " + ex.StackTrace);
+                MessageBox.Show("Please fill in all fields " + ex.StackTrace + "\n" + ex.Message);
             }
         }
 
