@@ -53,7 +53,7 @@ namespace Biometric_Attendance_System.Model
             if (resultSet.Read())
             {
                 var Departments = new Department(
-                    (int)resultSet["id"],
+                    Convert.ToInt32((uint)resultSet["id"]),
                     (string)resultSet["department_name"],
                     (string)resultSet["department_description"],
                     (DateTime)resultSet["date_created"],

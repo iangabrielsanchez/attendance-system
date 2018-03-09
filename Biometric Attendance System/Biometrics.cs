@@ -41,9 +41,13 @@ namespace Biometric_Attendance_System
         public Biometrics()
         {
             engine = new ZKFPEngX();
-            engine.SensorIndex = 0;
-            Status = (EngineStatus) engine.InitEngine();
+            InitEngine();
             AddActions();
+        }
+        public void InitEngine()
+        {
+            engine.SensorIndex = 0;
+            Status = (EngineStatus)engine.InitEngine();
         }
 
         private void AddActions()

@@ -21,9 +21,6 @@ namespace Biometric_Attendance_System
         public Employees()
         {
             InitializeComponent();
-            Program.biometrics.engine.OnEnroll += Engine_OnEnroll;
-            Program.biometrics.engine.OnImageReceived += Engine_OnImageReceived;
-            Program.biometrics.engine.OnCapture += Engine_OnCapture;
             templates.Add("thumb", "mspZFprRjU5ogQkaUWdBDR5NNkENJs07gQ4jTkIBCyCZH0EJdhwZwQVumjlBDYqdQEEIhbAnAQ5pMy3BEWtLTcENjUxUAQuUzlYBDhzOTwEJHFkwQQYfWSqBCSBXLgEKnlcpAQ6ZWTuBCxdZNsEKGVZGAQ+WVz8BDplXOkEOnlc1gQyeIDbBBA40ZgEKkzJXwQceTG1BCpTObkEOE8lcAQ6aTF1BEZKySsELjsk8wRuOSTRBF43MFwFLtzwcgQ9H0TMBECZOGEExLKc7gQmFJ0vBBIurNkEIfVALwQ01HA2BBeYaKQEEB6oMQQTXxTCBNp2uDMEIXZElQQaADjTBBYjZRMEGGFlNwQwTJWRPDQANYmNnbXQCBwwSFhgZGRkADl9fYmZwdwULEhcaGxobGwANZGZrcXYFCQ8RFRcYGBgADltbXWBpcwQLFBocHBoaGQANaGpvcwEGCg8RFBYWFxcADlVWV1lgbQMOGB0fIB0dGwANam1wdAIHCg4QEhQUFhgADlRUUlNVXwEVHCEiIyEhHwAMbnBzdgMHCg4QExMVFQAPT05MS0tMMR0hJCUmJCMiIgAMcHJ1AgUICw8REhQVGAAPSklGREREMiUlJSYmJSMjJAALc3UCBQcJDQ8RExQWAA9DQkFAPjcnJiYlJCMiIiEiAAt2AQUICgwODxESFBYAD0FAQD43Ix0iJCIgHx8dHSAACgIFCAoOEBISEBARAA8+PTk1LSokIyEfHRwcHBsdAQkHCg0PEhMTERAADjk3Mi4pKCUjIR0dHBsYFwIICw4RFBUUEAENNjEuKiknJSIgHx8dGw==");
             templates.Add("index", "mspZ1nh+mS5QQQaSsUpBBY8/JcEHusEowQm/PzHBDEnCN8EaRTguAQtGSiVBFsesMUEeXLIagRDHujfBEjdNM0Eb5jVYQQcgx2lBD5RFG8ELxEgswRLMrCjBDds5PgEmKrNWQQSUzCnBHtakHIEN2TRAAR15siUBCU++bsEJmZVFgQmDIl2BBY2HQUEJiE5RgSWDMhDBBUtIPcE7g5BBAQWCJoTtDrDgcQ4ADUxOUVRZYXMJEhgcHyAhAA1LSk1QVlxrCBQaHyAhIQANUVNWWV9rAQoRFhkcHyEADklHSUtQVF0HFhwfISEjIgEMVlldYXACCQ8TFRkbAA5HRUZGSktLLx8gISMjJCIBDFhcX2RyAwgNEBMWGQAORkZGRkZFQTUlIyMjIyQkAQxdYGRtdQQHDA8RFBgADkZGRkZFQz80KSQkJSQjIQEMYGNqcncDBgsPEhUYAA5HSEpKSkdANCgkIyIhISECC2RwdQIEBwwPExQBDkhJS01OSzEgHyEhIR8gAgtocwEEBwkMDhETAg5MTVNWXAQUGBwdHx0iAwp3BQgKDA8PEAIOVFRWW2d1BxAYHyEfJwQKCQ0ODw8QEQIOXllbXmtzAxEfJichKwUJDg8REhMDDVxZXmtr/////zMt");
             templates.Add("middle", "mspZVm96nspIQSKVzUgBIpQzJwEFPUsjwRbdLEgBDCo+WoEKmjE4AR4vzUFBGIgwMYEVPEQpAT8aQCqBHiFLHgESzcY1AQeVSi8BI3alKMEW1SQXQQjGpTrBHoEoOIE1ZqkfQQfEry8BFc+xHUEDQCRHQQuSnUTBDYwWPAEMgRdOgQeRoyMBDkxFY8ETkENTwQ+WL2HBCKC6ZYEGly5ESw6w0DEKAA1HR0dHSFFYGCMpKywsLAANRkZFRURHPy8oLCwrKSkADUhISUtPW3cRICYrLC0tAA1ERURCQUA6Mi0uLCknKAANSEhLUFdlAg8cJCksLjIADUREQ0E+OzYxLi0rJyUkAQxITldeawIPGiImKS0ADUJDQkA9ODMuLCooJCQjAgxTXGNtAg0YHyQnKwANQkNDQTs0LCgnJiQgHxwCDFJeZnEEDhYcIiUpAQ1GRkQ7MCQiISEfHRwcAgtSYGpzBQ0VGR8iAg1LS0MoHR0fIBsZFxkDC2RwAQgMERYbHwINTlNcBRMXGBcYGhsaBQoECAsQFBoCDU9ZZHQKERIUG/8dGwcJCg8SAwleaHEDCAcLAAD/BAhmcAMKBw==");
@@ -167,6 +164,22 @@ namespace Biometric_Attendance_System
         private void buttonBrowsePic_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Employees_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!Visible)
+            {
+                Program.biometrics.engine.OnEnroll -= Engine_OnEnroll;
+                Program.biometrics.engine.OnImageReceived -= Engine_OnImageReceived;
+                Program.biometrics.engine.OnCapture -= Engine_OnCapture;
+            }
+            else
+            {
+                Program.biometrics.engine.OnEnroll += Engine_OnEnroll;
+                Program.biometrics.engine.OnImageReceived += Engine_OnImageReceived;
+                Program.biometrics.engine.OnCapture += Engine_OnCapture;
+            }
         }
     }
 }
