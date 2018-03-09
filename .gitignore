@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 
 update.bat
+updatelog.txt
