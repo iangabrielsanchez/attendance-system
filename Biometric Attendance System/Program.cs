@@ -21,7 +21,7 @@ namespace Biometric_Attendance_System
         static void Main()
         {
             AppDomain.CurrentDomain.ProcessExit += (s, e) => biometrics.Shutdown();
-            Database = new Database("attendance_system", "localhost", "root", "toor");
+            Database = new Database("attendance_system", "localhost", "root", "");
             Employee[] employees = Employee.GetEmployees();
             //Department[] departments = Department.GetDepartments();
             //if (departments.Length >= 1)
