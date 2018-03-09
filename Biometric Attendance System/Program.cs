@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using Biometric_Attendance_System.Model;
 
@@ -12,6 +13,7 @@ namespace Biometric_Attendance_System
         public static AttendanceMonitor AttendanceMonitor;
         public static MainForm MainForm;
         public static Biometrics biometrics = new Biometrics();
+        public static SHA1 sha1 = SHA1.Create();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

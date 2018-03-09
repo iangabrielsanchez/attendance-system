@@ -11,20 +11,46 @@ namespace Biometric_Attendance_System.Model
         public string MiddleName;
         public string LastName;
         public int DepartmentId;
-        public ulong Status;
-        public DateTime DateCreated;
-        public DateTime DateUpdated;
+        public string Position;
+        public string Address;
+        public string Sex;
+        public Date BirthDate;
+        public Date DateEmployed;
+        public string TIN;
+        public string SSN;
+        public string PhilHealth;
+        public string Pagibig;
+        public string Contact;
+        public decimal Rate;
+        public string Fingerprint;
+        public string FingerprintLocation;
+        public string ImageLocation;
 
-        public Employee(int id, string firstName, string middleName, string lastName, int departmentId, ulong status, DateTime dateCreated, DateTime dateUpdated)
+        public Employee(int Id, string FirstName, string MiddleName, string LastName,
+            int DepartmentId, string Position, string Address, string Sex, Date BirthDate,
+            Date DateEmployed, string TIN, string SSN, string PhilHealth, string Pagibig,
+            string Contact, decimal Rate, string Fingerprint, string FingerprintLocation,
+            string ImageLocation)
         {
-            Id = id;
-            FirstName = firstName;
-            MiddleName = middleName;
-            LastName = lastName;
-            DepartmentId = departmentId;
-            Status = status;
-            DateCreated = dateCreated;
-            DateUpdated = dateUpdated;
+            this.Id = Id;
+            this.FirstName = FirstName;
+            this.MiddleName = MiddleName;
+            this.LastName = LastName;
+            this.DepartmentId = DepartmentId;
+            this.Position = Position;
+            this.Address = Address;
+            this.Sex = Sex;
+            this.BirthDate = BirthDate;
+            this.DateEmployed = DateEmployed;
+            this.TIN = TIN;
+            this.SSN = SSN;
+            this.PhilHealth = PhilHealth;
+            this.Pagibig = Pagibig;
+            this.Contact = Contact;
+            this.Rate = Rate;
+            this.Fingerprint = Fingerprint;
+            this.FingerprintLocation = FingerprintLocation;
+            this.ImageLocation = ImageLocation;
         }
 
         public static Employee[] GetEmployees()
@@ -36,13 +62,24 @@ namespace Biometric_Attendance_System.Model
             {
                 var employee = new Employee(
                     (int)resultSet["id"],
-                    (string)resultSet["first_name"],
-                    (string)resultSet["middle_name"],
-                    (string)resultSet["last_name"],
-                    (int)resultSet["department_id"],
-                    (ulong)resultSet["status"],
-                    (DateTime)resultSet["date_created"],
-                    (DateTime)resultSet["date_updated"]
+                    (string)resultSet["firstname"],
+                    (string)resultSet["middlename"],
+                    (string)resultSet["lastname"],
+                    (int)resultSet["deparment_id"],
+                    (string)resultSet["position"],
+                    (string)resultSet["address"],
+                    (string)resultSet["sex"],
+                    (Date)resultSet["birthdate"],
+                    (Date)resultSet["date_employed"],
+                    (string)resultSet["tin"],
+                    (string)resultSet["ssn"],
+                    (string)resultSet["philhealth"],
+                    (string)resultSet["pagibig"],
+                    (string)resultSet["contact"],
+                    (decimal)resultSet["rate"],
+                    (string)resultSet["fingerprint"],
+                    (string)resultSet["fp_imglocation"],
+                    (string)resultSet["imglocation"]
                 );
                 employeesList.Add(employee);
             }
@@ -63,13 +100,24 @@ namespace Biometric_Attendance_System.Model
             {
                 var employee = new Employee(
                     (int)resultSet["id"],
-                    (string)resultSet["first_name"],
-                    (string)resultSet["middle_name"],
-                    (string)resultSet["last_name"],
-                    (int)resultSet["department_id"],
-                    (ulong)resultSet["status"],
-                    (DateTime)resultSet["date_created"],
-                    (DateTime)resultSet["date_updated"]
+                    (string)resultSet["firstname"],
+                    (string)resultSet["middlename"],
+                    (string)resultSet["lastname"],
+                    (int)resultSet["deparment_id"],
+                    (string)resultSet["position"],
+                    (string)resultSet["address"],
+                    (string)resultSet["sex"],
+                    (Date)resultSet["birthdate"],
+                    (Date)resultSet["date_employed"],
+                    (string)resultSet["tin"],
+                    (string)resultSet["ssn"],
+                    (string)resultSet["philhealth"],
+                    (string)resultSet["pagibig"],
+                    (string)resultSet["contact"],
+                    (decimal)resultSet["rate"],
+                    (string)resultSet["fingerprint"],
+                    (string)resultSet["fp_imglocation"],
+                    (string)resultSet["imglocation"]
                 );
                 Program.Database.Commit();
                 return employee;
@@ -81,15 +129,30 @@ namespace Biometric_Attendance_System.Model
         public static Employee AddEmployee(Employee employee)
         {
             var result = Program.Database.GetData("INSERT INTO employees " +
-                "VALUES (null, @firstName, @middleName, @lastName, @departmentId, @status, null, null); " +
+                "VALUES (null, @firstname, @middlename, @lastname, @deparment_id, @position, " +
+                "@address, @sex, @birthdate, @date_employed, @tin, @ssn, @philhealth, @pagibig, " +
+                "@contact, @rate, @fingerprint, @fp_imglocation, @imglocation); " +
                 "SELECT LAST_INSERT_ID() as id; ",
                 new[]
                 {
-                    new MySqlParameter("@firstName", employee.FirstName),
-                    new MySqlParameter("@middleName", employee.MiddleName),
-                    new MySqlParameter("@lastName", employee.LastName),
-                    new MySqlParameter("@departmentId", employee.DepartmentId),
-                    new MySqlParameter("@status", employee.Status)
+                    new MySqlParameter("@firstname", employee.FirstName),
+                    new MySqlParameter("@middlename", employee.MiddleName),
+                    new MySqlParameter("@lastname", employee.LastName),
+                    new MySqlParameter("@deparment_id", employee.DepartmentId),
+                    new MySqlParameter("@position", employee.Position),
+                    new MySqlParameter("@address", employee.Address),
+                    new MySqlParameter("@sex", employee.Sex),
+                    new MySqlParameter("@birthdate", employee.BirthDate),
+                    new MySqlParameter("@date_employed", employee.DateEmployed),
+                    new MySqlParameter("@tin", employee.TIN),
+                    new MySqlParameter("@ssn", employee.SSN),
+                    new MySqlParameter("@philhealth", employee.PhilHealth),
+                    new MySqlParameter("@pagibig", employee.Pagibig),
+                    new MySqlParameter("@contact", employee.Contact),
+                    new MySqlParameter("@rate", employee.Rate),
+                    new MySqlParameter("@fingerprint", employee.Fingerprint),
+                    new MySqlParameter("@fp_imglocation", employee.FingerprintLocation),
+                    new MySqlParameter("@imglocation", employee.ImageLocation)
                 }
             );
             if (result.Read())
@@ -104,19 +167,32 @@ namespace Biometric_Attendance_System.Model
         public static Employee EditEmployee(int id, Employee employee)
         {
             var result = Program.Database.ExecuteCommand("UPDATE employees SET " +
-                "first_name = CASE WHEN @firstName IS NULL THEN first_name ELSE @firstName END, " +
-                "middle_name = CASE WHEN @middleName IS NULL THEN middle_name ELSE @middleName END, " +
-                "last_name = CASE WHEN @lastName IS NULL THEN last_name ELSE @lastName END, " +
-                "department_id = CASE WHEN @departmentId IS NULL THEN department_id ELSE @departmentId END, " +
-                "status = CASE WHEN @status IS NULL THEN status ELSE @status END " +
+                "firstname = @firstname, middlename = @middlename, lastname = @lastname, " +
+                "deparment_id = @deparment_id, position = @position, address = @address, sex = @sex, " +
+                "birthdate = @birthdate, date_employed = @date_employed, tin = @tin, ssn = @ssn, " +
+                "philhealth = @philhealth, pagibig = @pagibig, contact = @contact, rate = @rate, " +
+                "fingerprint = @fingerprint, fp_imglocation = @fp_imglocation, imglocation = @imglocation " +
                 "WHERE id = @id",
                 new[]{
-                    new MySqlParameter("@firstName", employee.FirstName),
-                    new MySqlParameter("@middleName", employee.MiddleName),
-                    new MySqlParameter("@lastName", employee.LastName),
-                    new MySqlParameter("@departmentId", employee.DepartmentId),
-                    new MySqlParameter("@status", employee.Status),
-                    new MySqlParameter("@id", id),
+                    new MySqlParameter("@id", employee.Id),
+                    new MySqlParameter("@firstname", employee.FirstName),
+                    new MySqlParameter("@middlename", employee.MiddleName),
+                    new MySqlParameter("@lastname", employee.LastName),
+                    new MySqlParameter("@deparment_id", employee.DepartmentId),
+                    new MySqlParameter("@position", employee.Position),
+                    new MySqlParameter("@address", employee.Address),
+                    new MySqlParameter("@sex", employee.Sex),
+                    new MySqlParameter("@birthdate", employee.BirthDate),
+                    new MySqlParameter("@date_employed", employee.DateEmployed),
+                    new MySqlParameter("@tin", employee.TIN),
+                    new MySqlParameter("@ssn", employee.SSN),
+                    new MySqlParameter("@philhealth", employee.PhilHealth),
+                    new MySqlParameter("@pagibig", employee.Pagibig),
+                    new MySqlParameter("@contact", employee.Contact),
+                    new MySqlParameter("@rate", employee.Rate),
+                    new MySqlParameter("@fingerprint", employee.Fingerprint),
+                    new MySqlParameter("@fp_imglocation", employee.FingerprintLocation),
+                    new MySqlParameter("@imglocation", employee.ImageLocation)
                 }
             );
             Program.Database.Commit();

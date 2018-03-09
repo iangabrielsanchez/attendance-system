@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Biometrics.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Date.cs" />
     <Compile Include="EmployeeRegistration.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -175,6 +176,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fingerprint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

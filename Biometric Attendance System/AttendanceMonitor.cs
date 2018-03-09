@@ -31,8 +31,8 @@ namespace Biometric_Attendance_System
                 label3.Text = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
                 Department department = Department.GetDepartment(employee.DepartmentId);
                 label4.Text = department.Name;
-                label5.Text = employee.Status == 1 ? "Time In" : "Time Out";
-                employee.Status = employee.Status == 1 ? (ulong)0 : (ulong)1;
+                //label5.Text = employee.Status == 1 ? "Time In" : "Time Out";
+                //employee.Status = employee.Status == 1 ? (ulong)0 : (ulong)1;
                 Employee.EditEmployee(employee.Id, employee);
                 Attendance.AddAttendance(employee.Id);
                 pictureBox1.Image = Properties.Resources.avatar;

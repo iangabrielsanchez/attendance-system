@@ -39,17 +39,17 @@ namespace Biometric_Attendance_System
             string middleName = textBox2.Text;
             string lastName = textBox3.Text;
             int department = comboBox1.SelectedIndex;
-            Employee employee = new Employee(
-                -1,
-                firstName,
-                middleName,
-                lastName,
-                department,
-                0,
-                new DateTime(),
-                new DateTime()
-            );
-            Employee.AddEmployee(employee);
+            //Employee employee = new Employee(
+            //    -1,
+            //    firstName,
+            //    middleName,
+            //    lastName,
+            //    department,
+            //    0,
+            //    new DateTime(),
+            //    new DateTime()
+            //);
+            //Employee.AddEmployee(employee);
             MessageBox.Show("Employee Added");
             Close();
 

@@ -11,27 +11,27 @@ namespace Biometric_Attendance_System
             InitializeComponent();
         }
 
-        private void loadEmployees()
-        {
-            Employee[] employees = Employee.GetEmployees();
-            foreach(Employee employee in employees)
-            {
-                dgvEmployees.Rows.Add(
-                    employee.Id,
-                    employee.FirstName,
-                    employee.MiddleName,
-                    employee.LastName,
-                    employee.DepartmentId,
-                    employee.Status,
-                    employee.DateCreated,
-                    employee.DateUpdated
-                );
-            }
-        }
+        //private void loadEmployees()
+        //{
+        //    Employee[] employees = Employee.GetEmployees();
+        //    foreach(Employee employee in employees)
+        //    {
+        //        dgvEmployees.Rows.Add(
+        //            employee.Id,
+        //            employee.FirstName,
+        //            employee.MiddleName,
+        //            employee.LastName,
+        //            employee.DepartmentId,
+        //            employee.Status,
+        //            employee.DateCreated,
+        //            employee.DateUpdated
+        //        );
+        //    }
+        //}
 
         private void EmployeeRegistration_Load(object sender, EventArgs e)
         {
-            loadEmployees();
+            //loadEmployees();
         }
 
         private void button1_Click(object sender, EventArgs e)
