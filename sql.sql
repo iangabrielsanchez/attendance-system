@@ -26,8 +26,22 @@ CREATE TABLE `departments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `department_name` varchar(50) NOT NULL,
   `department_description` varchar(250) DEFAULT NULL,
+  `start_mon` time DEFAULT NULL,
+  `end_mon` time DEFAULT NULL,
+  `start_tue` time DEFAULT NULL,
+  `end_tue` time DEFAULT NULL,
+  `start_wed` time DEFAULT NULL,
+  `end_wed` time DEFAULT NULL,
+  `start_thurs` time DEFAULT NULL,
+  `end_thurs` time DEFAULT NULL,
+  `start_fri` time DEFAULT NULL,
+  `end_fri` time DEFAULT NULL,
+  `start_sat` time DEFAULT NULL,
+  `end_sat` time DEFAULT NULL,
+  `start_sun` time DEFAULT NULL,
+  `end_sun` time DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +50,7 @@ CREATE TABLE `departments` (
 
 LOCK TABLES `departments` WRITE;
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
-INSERT INTO `departments` VALUES (1,'HR Department','This is the HR department'),(2,'IT Department','This is the IT department');
+INSERT INTO `departments` VALUES (7,'HR Department','','12:00:00','17:00:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +83,7 @@ CREATE TABLE `employees` (
   PRIMARY KEY (`id`),
   KEY `deparment_id` (`deparment_id`),
   CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`deparment_id`) REFERENCES `departments` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,6 +92,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (6,'Juan ','Dela Cruz','Masipag',7,'Admin','','Male','2018-03-10','2018-03-10','123456','123456','123456','123456','09123456789',1234.00,'mspY1neKnIdAggmLCj7BCIOLOAEEDQ9NQQqKl0vBCYidTkELh6MrgQzqpDFBFnCpIMEL2ytiggaTMiuCDd2yNIEeYTVSwQaYNyiCCFI4HAENyzhMAgmRuBCBBUy6P4ImdD4uAQpJvz3BJi1BN8ERPMMVwQjBwyLBBb/EFcEQS8YvAQ1MxyaBCcPINcEWSck7gRExzClBCsbPKEELzk9tQROdT2+BEyJPOcI7hdFkAQ2ZLjTvDraQUw0CDltdYWp1CBEWGRwdHx0BDlVVV1xmcwgTGRwgISIiAg1eYGNsdggPExcZGhsBDlFSVFhfbggVGyEjJCMkAg1hY2VtdwcNEhUYGBkBDkxOUVRZZQcXHyMlJSUkAw1kaXEBBgoQFRcYGQEOSUtMUFJYDBshJCYmJiUDDWlwdQIGChIXFxgYAQ9ISktMS0k1JSUmKCgnJiMEDXR3BAkMERQVFxcBD0pLSUpHQjcsKCgpKSgmJQQMcwMHDA8TFRYYAg9MTExIQDYtKiopKCYlJgUMCAsPEhQUFhgCD05QUUs/MywqKCcoKCgpBQsLDxIVFxcYAg9QU1VVRSwlJSUlJiUmKQYKDhMWGBcDDldZXgEYICMkIyYlKQgJFxsEDVxnAQoaHyMiJR8=','C:\\Users\\ianga\\Desktop\\pinang.png');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -90,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-10  2:07:24
+-- Dump completed on 2018-03-10  5:11:32
