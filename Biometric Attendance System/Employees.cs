@@ -30,6 +30,10 @@ namespace Biometric_Attendance_System
             LoadDepartments();
             LoadEmployees();
             panelPersonDetails.Enabled = false;
+            Program.biometrics.InitEngine();
+            Program.biometrics.engine.OnCapture += Engine_OnCapture;
+            Program.biometrics.engine.OnEnroll += Engine_OnEnroll;
+            Program.biometrics.engine.OnCapture += Engine_OnCapture;
         }
 
         private void Employees_VisibleChanged(object sender, EventArgs e)

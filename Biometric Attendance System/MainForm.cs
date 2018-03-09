@@ -12,7 +12,8 @@ namespace Biometric_Attendance_System
 {
     public partial class MainForm : Form
     {
-        Employees employees = new Employees();
+        Employees employees = new Employees() { Dock = DockStyle.Fill, Visible = true };
+        Schedules schedules = new Schedules() { Dock = DockStyle.Fill, Visible = true };
         string activeButton = "";
         Color blue = Color.FromArgb(58, 154, 217);
         Color white = Color.FromArgb(255, 255, 255);
@@ -20,15 +21,13 @@ namespace Biometric_Attendance_System
         public MainForm()
         {
             InitializeComponent();
-            ActivateButton(buttonEmployees, null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            container.Controls.Clear();
             container.Controls.Add(employees);
-            employees.Dock = DockStyle.Fill;
-            employees.Visible = true;
+            container.Controls.Add(schedules);
+            ActivateButton(buttonEmployees, null);
         }
 
         private void Mouse_Enter(object sender, EventArgs e)
@@ -56,6 +55,7 @@ namespace Biometric_Attendance_System
             IsButtonActive(button, true);
             activeButton = button.Text;
 
+            ShowControl();
             foreach (var control in nav.Controls)
             {
                 if (control is Button b)
@@ -66,7 +66,24 @@ namespace Biometric_Attendance_System
                     }
                 }
             }
+            
+        }
 
+        private void ShowControl()
+        {
+            //container.Controls.Clear();
+            switch (activeButton)
+            {
+                case "Employees":
+                    //container.Controls.Add(employees);
+                    employees.BringToFront();
+                    break;
+                case "Schedules":
+                    //container.Controls.Add(schedules);
+                    schedules.BringToFront();
+                    break;
+                default: break;
+            }
         }
 
         private void IsButtonActive(Button b, bool active)

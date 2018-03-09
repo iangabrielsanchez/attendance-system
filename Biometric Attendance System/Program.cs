@@ -24,6 +24,7 @@ namespace Biometric_Attendance_System
         {
             AppDomain.CurrentDomain.ProcessExit += (s, e) => biometrics.Shutdown();
             Database = new Database("attendance_system", "localhost", settings.DatabaseUser, settings.DatabasePassword);
+            Department[] departments = Department.GetDepartments();
             Employee[] employees = Employee.GetEmployees();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
