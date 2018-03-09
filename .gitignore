@@ -260,5 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 
+# Update script for the client
 update.bat
 updatelog.txt
