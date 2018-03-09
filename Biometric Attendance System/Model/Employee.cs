@@ -23,14 +23,14 @@ namespace Biometric_Attendance_System.Model
         public string Contact;
         public decimal Rate;
         public string Fingerprint;
-        public string FingerprintLocation;
         public string ImageLocation;
+
+        public Employee() { }
 
         public Employee(int Id, string FirstName, string MiddleName, string LastName,
             int DepartmentId, string Position, string Address, string Sex, DateTime BirthDate,
             DateTime DateEmployed, string TIN, string SSN, string PhilHealth, string Pagibig,
-            string Contact, decimal Rate, string Fingerprint, string FingerprintLocation,
-            string ImageLocation)
+            string Contact, decimal Rate, string Fingerprint, string ImageLocation)
         {
             this.Id = Id;
             this.FirstName = FirstName;
@@ -49,7 +49,6 @@ namespace Biometric_Attendance_System.Model
             this.Contact = Contact;
             this.Rate = Rate;
             this.Fingerprint = Fingerprint;
-            this.FingerprintLocation = FingerprintLocation;
             this.ImageLocation = ImageLocation;
         }
 
@@ -78,7 +77,6 @@ namespace Biometric_Attendance_System.Model
                     (string)resultSet["contact"],
                     (decimal)resultSet["rate"],
                     (string)resultSet["fingerprint"],
-                    (string)resultSet["fp_imglocation"],
                     (string)resultSet["imglocation"]
                 );
                 employeesList.Add(employee);
@@ -116,7 +114,6 @@ namespace Biometric_Attendance_System.Model
                     (string)resultSet["contact"],
                     (decimal)resultSet["rate"],
                     (string)resultSet["fingerprint"],
-                    (string)resultSet["fp_imglocation"],
                     (string)resultSet["imglocation"]
                 );
                 Program.Database.Commit();
@@ -131,7 +128,7 @@ namespace Biometric_Attendance_System.Model
             var result = Program.Database.GetData("INSERT INTO employees " +
                 "VALUES (null, @firstname, @middlename, @lastname, @deparment_id, @position, " +
                 "@address, @sex, @birthdate, @date_employed, @tin, @ssn, @philhealth, @pagibig, " +
-                "@contact, @rate, @fingerprint, @fp_imglocation, @imglocation); " +
+                "@contact, @rate, @fingerprint, @imglocation); " +
                 "SELECT LAST_INSERT_ID() as id; ",
                 new[]
                 {
@@ -151,7 +148,6 @@ namespace Biometric_Attendance_System.Model
                     new MySqlParameter("@contact", employee.Contact),
                     new MySqlParameter("@rate", employee.Rate),
                     new MySqlParameter("@fingerprint", employee.Fingerprint),
-                    new MySqlParameter("@fp_imglocation", employee.FingerprintLocation),
                     new MySqlParameter("@imglocation", employee.ImageLocation)
                 }
             );
@@ -171,28 +167,27 @@ namespace Biometric_Attendance_System.Model
                 "deparment_id = @deparment_id, position = @position, address = @address, sex = @sex, " +
                 "birthdate = @birthdate, date_employed = @date_employed, tin = @tin, ssn = @ssn, " +
                 "philhealth = @philhealth, pagibig = @pagibig, contact = @contact, rate = @rate, " +
-                "fingerprint = @fingerprint, fp_imglocation = @fp_imglocation, imglocation = @imglocation " +
+                "fingerprint = @fingerprint, imglocation = @imglocation " +
                 "WHERE id = @id",
                 new[]{
-                    new MySqlParameter("@id", employee.Id),
-                    new MySqlParameter("@firstname", employee.FirstName),
-                    new MySqlParameter("@middlename", employee.MiddleName),
-                    new MySqlParameter("@lastname", employee.LastName),
-                    new MySqlParameter("@deparment_id", employee.DepartmentId),
-                    new MySqlParameter("@position", employee.Position),
-                    new MySqlParameter("@address", employee.Address),
-                    new MySqlParameter("@sex", employee.Sex),
-                    new MySqlParameter("@birthdate", employee.BirthDate),
-                    new MySqlParameter("@date_employed", employee.DateEmployed),
-                    new MySqlParameter("@tin", employee.TIN),
-                    new MySqlParameter("@ssn", employee.SSN),
-                    new MySqlParameter("@philhealth", employee.PhilHealth),
-                    new MySqlParameter("@pagibig", employee.Pagibig),
-                    new MySqlParameter("@contact", employee.Contact),
-                    new MySqlParameter("@rate", employee.Rate),
-                    new MySqlParameter("@fingerprint", employee.Fingerprint),
-                    new MySqlParameter("@fp_imglocation", employee.FingerprintLocation),
-                    new MySqlParameter("@imglocation", employee.ImageLocation)
+                new MySqlParameter("@id", employee.Id),
+                new MySqlParameter("@firstname", employee.FirstName),
+                new MySqlParameter("@middlename", employee.MiddleName),
+                new MySqlParameter("@lastname", employee.LastName),
+                new MySqlParameter("@deparment_id", employee.DepartmentId),
+                new MySqlParameter("@position", employee.Position),
+                new MySqlParameter("@address", employee.Address),
+                new MySqlParameter("@sex", employee.Sex),
+                new MySqlParameter("@birthdate", employee.BirthDate),
+                new MySqlParameter("@date_employed", employee.DateEmployed),
+                new MySqlParameter("@tin", employee.TIN),
+                new MySqlParameter("@ssn", employee.SSN),
+                new MySqlParameter("@philhealth", employee.PhilHealth),
+                new MySqlParameter("@pagibig", employee.Pagibig),
+                new MySqlParameter("@contact", employee.Contact),
+                new MySqlParameter("@rate", employee.Rate),
+                new MySqlParameter("@fingerprint", employee.Fingerprint),
+                new MySqlParameter("@imglocation", employee.ImageLocation)
                 }
             );
             Program.Database.Commit();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using Biometric_Attendance_System.Model;
+using Biometric_Attendance_System.Properties;
 
 namespace Biometric_Attendance_System
 {
@@ -11,9 +12,10 @@ namespace Biometric_Attendance_System
     {
         public static Database Database;
         public static AttendanceMonitor AttendanceMonitor;
-        public static MainForm MainForm; 
+        public static MainForm MainForm;
         public static Biometrics biometrics = new Biometrics();
         public static SHA1 sha1 = SHA1.Create();
+        public static Settings settings = Settings.Default;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -21,14 +23,8 @@ namespace Biometric_Attendance_System
         static void Main()
         {
             AppDomain.CurrentDomain.ProcessExit += (s, e) => biometrics.Shutdown();
-            Database = new Database("attendance_system", "localhost", "root", "");
+            Database = new Database("attendance_system", "localhost", settings.DatabaseUser, settings.DatabasePassword);
             Employee[] employees = Employee.GetEmployees();
-            //Department[] departments = Department.GetDepartments();
-            //if (departments.Length >= 1)
-            //{
-            //    Department dept = new Department(-1, "IT Department", "", new DateTime(), new DateTime());
-            //    Department.AddDepartments(dept);
-            //}
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AttendanceMonitor = new AttendanceMonitor();

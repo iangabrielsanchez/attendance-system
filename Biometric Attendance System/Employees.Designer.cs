@@ -36,13 +36,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
+            this._index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DepartmentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.panelPersonDetails = new System.Windows.Forms.Panel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
@@ -52,7 +55,6 @@
             this.buttonBrowsePic = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBoxFingerprint = new System.Windows.Forms.PictureBox();
-            this.buttonRegisterFinger = new System.Windows.Forms.Button();
             this.buttonClearFinger = new System.Windows.Forms.Button();
             this.txtPagibig = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -91,7 +93,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelPersonDetails.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
             this.panel2.SuspendLayout();
@@ -102,6 +104,9 @@
             // 
             this.dgvEmployees.AllowUserToAddRows = false;
             this.dgvEmployees.AllowUserToDeleteRows = false;
+            this.dgvEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -114,6 +119,7 @@
             this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this._index,
             this.ID,
             this.FirstName,
             this.MiddleName,
@@ -127,14 +133,23 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.Location = new System.Drawing.Point(0, 0);
+            this.dgvEmployees.MultiSelect = false;
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(495, 593);
+            this.dgvEmployees.Size = new System.Drawing.Size(495, 548);
             this.dgvEmployees.TabIndex = 0;
+            this.dgvEmployees.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmployees_CellMouseDoubleClick);
+            this.dgvEmployees.SelectionChanged += new System.EventHandler(this.dgvEmployees_SelectionChanged);
+            // 
+            // _index
+            // 
+            this._index.HeaderText = "_index";
+            this._index.Name = "_index";
+            this._index.ReadOnly = true;
+            this._index.Visible = false;
             // 
             // ID
             // 
@@ -184,61 +199,88 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel1.Controls.Add(this.buttonEdit);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonAdd);
             this.splitContainer1.Panel1.Controls.Add(this.dgvEmployees);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.panelPersonDetails);
             this.splitContainer1.Size = new System.Drawing.Size(1069, 593);
             this.splitContainer1.SplitterDistance = 495;
             this.splitContainer1.TabIndex = 2;
             // 
-            // panel1
+            // buttonEdit
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.buttonSave);
-            this.panel1.Controls.Add(this.buttonCancel);
-            this.panel1.Controls.Add(this.buttonReset);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.txtPagibig);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.txtContact);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.txtPhilHealth);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.txtSSN);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.txtTIN);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.txtRate);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.dtpDateEmployed);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.txtFirstName);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.dtpBirthDate);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.cbxSex);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.txtAddress);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.txtPosition);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.cbxDepartment);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.txtLastName);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtMiddleName);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.txtId);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(570, 593);
-            this.panel1.TabIndex = 0;
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.buttonEdit.Location = new System.Drawing.Point(407, 554);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(85, 35);
+            this.buttonEdit.TabIndex = 19;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.buttonAdd.Location = new System.Drawing.Point(3, 554);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(85, 35);
+            this.buttonAdd.TabIndex = 18;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // panelPersonDetails
+            // 
+            this.panelPersonDetails.BackColor = System.Drawing.Color.White;
+            this.panelPersonDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelPersonDetails.Controls.Add(this.buttonSave);
+            this.panelPersonDetails.Controls.Add(this.buttonCancel);
+            this.panelPersonDetails.Controls.Add(this.buttonReset);
+            this.panelPersonDetails.Controls.Add(this.panel3);
+            this.panelPersonDetails.Controls.Add(this.panel2);
+            this.panelPersonDetails.Controls.Add(this.txtPagibig);
+            this.panelPersonDetails.Controls.Add(this.label16);
+            this.panelPersonDetails.Controls.Add(this.txtContact);
+            this.panelPersonDetails.Controls.Add(this.label15);
+            this.panelPersonDetails.Controls.Add(this.txtPhilHealth);
+            this.panelPersonDetails.Controls.Add(this.label14);
+            this.panelPersonDetails.Controls.Add(this.txtSSN);
+            this.panelPersonDetails.Controls.Add(this.label13);
+            this.panelPersonDetails.Controls.Add(this.txtTIN);
+            this.panelPersonDetails.Controls.Add(this.label12);
+            this.panelPersonDetails.Controls.Add(this.txtRate);
+            this.panelPersonDetails.Controls.Add(this.label11);
+            this.panelPersonDetails.Controls.Add(this.dtpDateEmployed);
+            this.panelPersonDetails.Controls.Add(this.label10);
+            this.panelPersonDetails.Controls.Add(this.txtFirstName);
+            this.panelPersonDetails.Controls.Add(this.label9);
+            this.panelPersonDetails.Controls.Add(this.dtpBirthDate);
+            this.panelPersonDetails.Controls.Add(this.label8);
+            this.panelPersonDetails.Controls.Add(this.cbxSex);
+            this.panelPersonDetails.Controls.Add(this.label7);
+            this.panelPersonDetails.Controls.Add(this.txtAddress);
+            this.panelPersonDetails.Controls.Add(this.label6);
+            this.panelPersonDetails.Controls.Add(this.txtPosition);
+            this.panelPersonDetails.Controls.Add(this.label5);
+            this.panelPersonDetails.Controls.Add(this.cbxDepartment);
+            this.panelPersonDetails.Controls.Add(this.label4);
+            this.panelPersonDetails.Controls.Add(this.txtLastName);
+            this.panelPersonDetails.Controls.Add(this.label3);
+            this.panelPersonDetails.Controls.Add(this.txtMiddleName);
+            this.panelPersonDetails.Controls.Add(this.label2);
+            this.panelPersonDetails.Controls.Add(this.txtId);
+            this.panelPersonDetails.Controls.Add(this.label1);
+            this.panelPersonDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPersonDetails.Location = new System.Drawing.Point(0, 0);
+            this.panelPersonDetails.Name = "panelPersonDetails";
+            this.panelPersonDetails.Size = new System.Drawing.Size(570, 593);
+            this.panelPersonDetails.TabIndex = 0;
             // 
             // buttonSave
             // 
@@ -262,6 +304,7 @@
             this.buttonCancel.TabIndex = 16;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonReset
             // 
@@ -273,6 +316,7 @@
             this.buttonReset.TabIndex = 17;
             this.buttonReset.Text = "Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.dgvEmployees_SelectionChanged);
             // 
             // panel3
             // 
@@ -288,12 +332,11 @@
             // profilePicture
             // 
             this.profilePicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.profilePicture.Image = global::Biometric_Attendance_System.Properties.Resources.user;
-            this.profilePicture.InitialImage = global::Biometric_Attendance_System.Properties.Resources.avatar;
+            this.profilePicture.InitialImage = null;
             this.profilePicture.Location = new System.Drawing.Point(5, 5);
             this.profilePicture.Name = "profilePicture";
             this.profilePicture.Size = new System.Drawing.Size(150, 150);
-            this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profilePicture.TabIndex = 0;
             this.profilePicture.TabStop = false;
             // 
@@ -307,6 +350,7 @@
             this.buttonClearPic.TabIndex = 1;
             this.buttonClearPic.Text = "Clear";
             this.buttonClearPic.UseVisualStyleBackColor = true;
+            this.buttonClearPic.Click += new System.EventHandler(this.buttonClearPic_Click);
             // 
             // buttonBrowsePic
             // 
@@ -324,11 +368,10 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.pictureBoxFingerprint);
-            this.panel2.Controls.Add(this.buttonRegisterFinger);
             this.panel2.Controls.Add(this.buttonClearFinger);
             this.panel2.Location = new System.Drawing.Point(3, 256);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(160, 268);
+            this.panel2.Size = new System.Drawing.Size(160, 237);
             this.panel2.TabIndex = 39;
             // 
             // pictureBoxFingerprint
@@ -343,23 +386,11 @@
             this.pictureBoxFingerprint.TabIndex = 16;
             this.pictureBoxFingerprint.TabStop = false;
             // 
-            // buttonRegisterFinger
-            // 
-            this.buttonRegisterFinger.AutoSize = true;
-            this.buttonRegisterFinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.buttonRegisterFinger.Location = new System.Drawing.Point(5, 201);
-            this.buttonRegisterFinger.Name = "buttonRegisterFinger";
-            this.buttonRegisterFinger.Size = new System.Drawing.Size(150, 28);
-            this.buttonRegisterFinger.TabIndex = 0;
-            this.buttonRegisterFinger.Text = "Register Fingerprint";
-            this.buttonRegisterFinger.UseVisualStyleBackColor = true;
-            this.buttonRegisterFinger.Click += new System.EventHandler(this.RegisterFingerprint);
-            // 
             // buttonClearFinger
             // 
             this.buttonClearFinger.AutoSize = true;
             this.buttonClearFinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.buttonClearFinger.Location = new System.Drawing.Point(5, 235);
+            this.buttonClearFinger.Location = new System.Drawing.Point(5, 199);
             this.buttonClearFinger.Name = "buttonClearFinger";
             this.buttonClearFinger.Size = new System.Drawing.Size(150, 28);
             this.buttonClearFinger.TabIndex = 1;
@@ -551,6 +582,7 @@
             // 
             this.cbxSex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSex.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cbxSex.FormattingEnabled = true;
             this.cbxSex.Items.AddRange(new object[] {
@@ -616,6 +648,7 @@
             // 
             this.cbxDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cbxDepartment.FormattingEnabled = true;
             this.cbxDepartment.Location = new System.Drawing.Point(288, 308);
@@ -710,8 +743,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelPersonDetails.ResumeLayout(false);
+            this.panelPersonDetails.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
@@ -726,7 +759,7 @@
 
         private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelPersonDetails;
         private System.Windows.Forms.PictureBox profilePicture;
         private System.Windows.Forms.Button buttonBrowsePic;
         private System.Windows.Forms.Button buttonClearPic;
@@ -743,7 +776,6 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button buttonClearFinger;
-        private System.Windows.Forms.Button buttonRegisterFinger;
         private System.Windows.Forms.PictureBox pictureBoxFingerprint;
         private System.Windows.Forms.ComboBox cbxSex;
         private System.Windows.Forms.Label label7;
@@ -770,10 +802,13 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _index;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MiddleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DepartmentId;
+        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonAdd;
     }
 }

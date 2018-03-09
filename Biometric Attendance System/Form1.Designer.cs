@@ -191,6 +191,7 @@
             this.MinimumSize = new System.Drawing.Size(1024, 700);
             this.Name = "MainForm";
             this.Text = "Biometric Attendance System";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

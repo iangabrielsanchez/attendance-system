@@ -15,6 +15,12 @@ namespace Biometric_Attendance_System
             InitializeComponent();
         }
 
+        private void AttendanceMonitor_VisibleChanged(object sender, EventArgs e)
+        {
+            Program.biometrics.InitEngine();
+            biometrics.engine.OnCapture += Engine_OnCapture;
+        }
+
         private void Engine_OnCapture(bool ActionResult, object ATemplate)
         {
             
@@ -32,15 +38,15 @@ namespace Biometric_Attendance_System
                     break;
                 }
             }
-            biometrics.Beep();
+            biometrics.BeepAsync();
             if (output)
             {
-                biometrics.Success();
+                biometrics.SuccessAsync();
                 Success(employeenum);
             }
             else
             {
-                biometrics.Fail();
+                biometrics.FailAsync();
                 label3.Text = "UNKNOWN";
             }
         }
@@ -51,13 +57,13 @@ namespace Biometric_Attendance_System
             {
                 Employee employee = Employee.GetEmployee(emp);
                 label3.Text = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
-                //Department department = Department.GetDepartment(employee.DepartmentId);
-                //label4.Text = department.Name;
+                Department department = Department.GetDepartment(employee.DepartmentId);
+                label4.Text = department.Name;
                 //label5.Text = employee.Status == 1 ? "Time In" : "Time Out";
                 //employee.Status = employee.Status == 1 ? (ulong)0 : (ulong)1;
                 //Employee.EditEmployee(employee.Id, employee);
                 //Attendance.AddAttendance(employee.Id);
-                pictureBox1.Image = Properties.Resources.avatar;
+                pictureBox1.ImageLocation = employee.ImageLocation;
             }
             //catch (Exception ex)
             //{
@@ -115,16 +121,10 @@ namespace Biometric_Attendance_System
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Hide();
             Program.MainForm.Show();
         }
 
-        private void AttendanceMonitor_Load(object sender, EventArgs e)
-        {
-            //biometrics.engine.EndEngine();
-            //biometrics.engine.InitEngine();
-            Program.biometrics.engine = new ZKFPEngX();
-            Program.biometrics.InitEngine();
-            biometrics.engine.OnCapture += Engine_OnCapture;
-        }
+        
     }
 }

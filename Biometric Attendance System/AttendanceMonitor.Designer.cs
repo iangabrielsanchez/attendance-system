@@ -219,8 +219,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AttendanceMonitor";
-            this.Text = "AttendanceMonitor";
-            this.Load += new System.EventHandler(this.AttendanceMonitor_Load);
+            this.Text = "Biometric Attendance System - Attendance Monitor";
+            this.VisibleChanged += new System.EventHandler(this.AttendanceMonitor_VisibleChanged);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

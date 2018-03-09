@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -43,14 +43,14 @@ namespace Biometric_Attendance_System
         {
             try
             {
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                    sqlConnection.Open();
                 sqlConnection.Close();
             }
             catch (Exception ex)
             {
                 sqlConnection.Close();
-                MessageBox.Show(ex.Message);
-                return false;
+                throw ex;
             }
             return true;
         }
@@ -61,14 +61,14 @@ namespace Biometric_Attendance_System
             {
                 sqlCommand = new MySqlCommand(sql, sqlConnection);
                 sqlCommand.Parameters.AddRange(parameters);
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                    sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return false;
+                throw ex;
             }
             finally
             {
@@ -81,14 +81,14 @@ namespace Biometric_Attendance_System
             try
             {
                 sqlCommand = new MySqlCommand(sql, sqlConnection);
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                    sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return false;
+                throw ex;
             }
             finally
             {
@@ -102,18 +102,15 @@ namespace Biometric_Attendance_System
             try
             {
                 sqlCommand = new MySqlCommand(sql, sqlConnection);
-
-                sqlConnection.Open();
+                if(sqlConnection.State == ConnectionState.Closed)
+                    sqlConnection.Open();
                 sqlReader = sqlCommand.ExecuteReader();
                 return sqlReader;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-            
-            return null;
         }
 
         public MySqlDataReader GetData(string sql, Array parameters)
@@ -122,17 +119,15 @@ namespace Biometric_Attendance_System
             {
                 sqlCommand = new MySqlCommand(sql, sqlConnection);
                 sqlCommand.Parameters.AddRange(parameters);
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                    sqlConnection.Open();
                 sqlReader = sqlCommand.ExecuteReader();
                 return sqlReader;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace);
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-
-            return null;
         }
 
         public void Commit()

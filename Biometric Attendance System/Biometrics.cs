@@ -40,21 +40,14 @@ namespace Biometric_Attendance_System
 
         public Biometrics()
         {
-            engine = new ZKFPEngX();
             InitEngine();
-            AddActions();
-        }
-        public void InitEngine()
-        {
-            engine.SensorIndex = 0;
-            Status = (EngineStatus)engine.InitEngine();
         }
 
-        private void AddActions()
+        public void InitEngine()
         {
-            //engine.OnImageReceived += new IZKFPEngXEvents_OnImageReceivedEventHandler(OnImageReceive);
-            //engine.OnEnroll += Engine_OnEnroll;
-            
+            engine = new ZKFPEngX();
+            engine.SensorIndex = 0;
+            Status = (EngineStatus)engine.InitEngine();
         }
 
         public Image GetImage()
@@ -86,15 +79,26 @@ namespace Biometric_Attendance_System
 
         public void Success()
         {
-            new Thread(()=>
+            engine.ControlSensor(LIGHT_GREEN, SENSOR_ON);
+            engine.ControlSensor(LIGHT_GREEN, SENSOR_OFF);
+        }
+
+        public void SuccessAsync()
+        {
+            new Thread(() =>
             {
                 engine.ControlSensor(LIGHT_GREEN, SENSOR_ON);
                 engine.ControlSensor(LIGHT_GREEN, SENSOR_OFF);
             }).Start();
-            
         }
 
         public void Fail()
+        {
+            engine.ControlSensor(LIGHT_RED, SENSOR_ON);
+            engine.ControlSensor(LIGHT_RED, SENSOR_OFF);
+        }
+
+        public void FailAsync()
         {
             new Thread(() =>
             {
@@ -109,6 +113,15 @@ namespace Biometric_Attendance_System
             engine.ControlSensor(BEEP, SENSOR_OFF);
         }
 
-        
+        public void BeepAsync()
+        {
+            new Thread(() =>
+            {
+                engine.ControlSensor(BEEP, SENSOR_ON);
+                engine.ControlSensor(BEEP, SENSOR_OFF);
+            }).Start();
+        }
+
+
     }
 }

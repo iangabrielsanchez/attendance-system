@@ -9,16 +9,12 @@ namespace Biometric_Attendance_System.Model
         public int Id;
         public string Name;
         public string Description;
-        public DateTime DateCreated;
-        public DateTime DateUpdated;
 
-        public Department(int id, string departmentName, string departmentDescription, DateTime dateCreated, DateTime dateUpdated)
+        public Department(int id, string departmentName, string departmentDescription)
         {
             Id = id;
             Name = departmentName;
             Description = departmentDescription;
-            DateCreated = dateCreated;
-            DateUpdated = dateUpdated;
         }
 
         public static Department[] GetDepartments()
@@ -29,11 +25,9 @@ namespace Biometric_Attendance_System.Model
             while (resultSet.Read())
             {
                 var Departments = new Department(
-                    (int)resultSet["id"],
+                    Convert.ToInt32((uint)resultSet["id"]),
                     (string)resultSet["department_name"],
-                    (string)resultSet["department_description"],
-                    (DateTime)resultSet["date_created"],
-                    (DateTime)resultSet["date_updated"]
+                    (string)resultSet["department_description"]
                 );
                 DepartmentsList.Add(Departments);
             }
@@ -55,9 +49,7 @@ namespace Biometric_Attendance_System.Model
                 var Departments = new Department(
                     Convert.ToInt32((uint)resultSet["id"]),
                     (string)resultSet["department_name"],
-                    (string)resultSet["department_description"],
-                    (DateTime)resultSet["date_created"],
-                    (DateTime)resultSet["date_updated"]
+                    (string)resultSet["department_description"]
                 );
                 Program.Database.Commit();
                 return Departments;
@@ -69,7 +61,7 @@ namespace Biometric_Attendance_System.Model
         public static Department AddDepartments(Department department)
         {
             var result = Program.Database.GetData("INSERT INTO Departments " +
-                "VALUES (null, @departmentName, @departmentDescription, null, null); " +
+                "VALUES (null, @departmentName, @departmentDescription); " +
                 "SELECT LAST_INSERT_ID() as id; ",
                 new[]
                 {
