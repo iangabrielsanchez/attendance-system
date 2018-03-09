@@ -14,8 +14,8 @@ namespace Biometric_Attendance_System.Model
         public string Position;
         public string Address;
         public string Sex;
-        public Date BirthDate;
-        public Date DateEmployed;
+        public DateTime BirthDate;
+        public DateTime DateEmployed;
         public string TIN;
         public string SSN;
         public string PhilHealth;
@@ -27,8 +27,8 @@ namespace Biometric_Attendance_System.Model
         public string ImageLocation;
 
         public Employee(int Id, string FirstName, string MiddleName, string LastName,
-            int DepartmentId, string Position, string Address, string Sex, Date BirthDate,
-            Date DateEmployed, string TIN, string SSN, string PhilHealth, string Pagibig,
+            int DepartmentId, string Position, string Address, string Sex, DateTime BirthDate,
+            DateTime DateEmployed, string TIN, string SSN, string PhilHealth, string Pagibig,
             string Contact, decimal Rate, string Fingerprint, string FingerprintLocation,
             string ImageLocation)
         {
@@ -61,16 +61,16 @@ namespace Biometric_Attendance_System.Model
             while (resultSet.Read())
             {
                 var employee = new Employee(
-                    (int)resultSet["id"],
+                    Convert.ToInt32((uint)resultSet["id"]),
                     (string)resultSet["firstname"],
                     (string)resultSet["middlename"],
                     (string)resultSet["lastname"],
-                    (int)resultSet["deparment_id"],
+                    Convert.ToInt32((uint)resultSet["deparment_id"]),
                     (string)resultSet["position"],
                     (string)resultSet["address"],
                     (string)resultSet["sex"],
-                    (Date)resultSet["birthdate"],
-                    (Date)resultSet["date_employed"],
+                    (DateTime)resultSet["birthdate"],
+                    (DateTime)resultSet["date_employed"],
                     (string)resultSet["tin"],
                     (string)resultSet["ssn"],
                     (string)resultSet["philhealth"],
@@ -99,16 +99,16 @@ namespace Biometric_Attendance_System.Model
             if (resultSet.Read())
             {
                 var employee = new Employee(
-                    (int)resultSet["id"],
+                    Convert.ToInt32((uint)resultSet["id"]),
                     (string)resultSet["firstname"],
                     (string)resultSet["middlename"],
                     (string)resultSet["lastname"],
-                    (int)resultSet["deparment_id"],
+                    Convert.ToInt32((uint)resultSet["deparment_id"]),
                     (string)resultSet["position"],
                     (string)resultSet["address"],
                     (string)resultSet["sex"],
-                    (Date)resultSet["birthdate"],
-                    (Date)resultSet["date_employed"],
+                    (DateTime)resultSet["birthdate"],
+                    (DateTime)resultSet["date_employed"],
                     (string)resultSet["tin"],
                     (string)resultSet["ssn"],
                     (string)resultSet["philhealth"],

@@ -220,6 +220,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AttendanceMonitor";
             this.Text = "AttendanceMonitor";
+            this.Load += new System.EventHandler(this.AttendanceMonitor_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

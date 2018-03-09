@@ -92,27 +92,50 @@ namespace Biometric_Attendance_System
         {
             var template = Program.biometrics.engine.GetTemplateAsStringEx("9");
             var templateHash = GetSha1Hash(template);
-            MessageBox.Show(Application.StartupPath);
-            pictureBoxFingerprint.Image.Save(@"fingerprints\" +templateHash + ".jpg", ImageFormat.Jpeg);
-            //Employee employee = new Employee(
-            //    int.Parse(txtId.Text),
-            //    txtFirstName.Text,
-            //    txtMiddleName.Text,
-            //    txtLastName.Text,
-            //    cbxDepartment.SelectedIndex,
-            //    txtPosition.Text,
-            //    txtAddress.Text,
-            //    cbxSex.Text,
-            //    new Date(dtpBirthDate.Value),
-            //    new Date(dtpDateEmployed.Value),
-            //    txtTIN.Text,
-            //    txtSSN.Text,
-            //    txtPhilHealth.Text,
-            //    txtPagibig.Text,
-            //    txtContact.Text,
-            //    decimal.Parse(txtRate.Text),
-            //    ,
-            //);
+            var fplocation = @"fingerprints\" + templateHash + ".jpg";
+            pictureBoxFingerprint.Image.Save(fplocation, ImageFormat.Jpeg);
+
+            
+            var x2 = txtFirstName.Text;
+            var x3 = txtMiddleName.Text;
+            var x4 = txtLastName.Text;
+            var x5 = cbxDepartment.SelectedIndex +1;
+            var x6 = txtPosition.Text;
+            var x7 = txtAddress.Text;
+            var x8 = cbxSex.Text;
+            var x9 = dtpBirthDate.Value;
+            var x0 = dtpDateEmployed.Value;
+            var x11 = txtTIN.Text;
+            var x12 = txtSSN.Text;
+            var x13 = txtPhilHealth.Text;
+            var x14 = txtPagibig.Text;
+            var x15 = txtContact.Text;
+            var x16 = decimal.Parse(txtRate.Text);
+            var x17 = template;
+            var x18 = fplocation;
+
+            Employee employee = new Employee(
+                -1,
+                txtFirstName.Text,
+                txtMiddleName.Text,
+                txtLastName.Text,
+                cbxDepartment.SelectedIndex + 1,
+                txtPosition.Text,
+                txtAddress.Text,
+                cbxSex.Text,
+                dtpBirthDate.Value,
+                dtpDateEmployed.Value,
+                txtTIN.Text,
+                txtSSN.Text,
+                txtPhilHealth.Text,
+                txtPagibig.Text,
+                txtContact.Text,
+                decimal.Parse(txtRate.Text),
+                template,
+                fplocation,
+                ""
+            );
+            Employee.AddEmployee(employee);
         }
 
         static string GetSha1Hash(string input)
@@ -133,6 +156,17 @@ namespace Biometric_Attendance_System
 
             // Return the hexadecimal string.
             return sBuilder.ToString();
+        }
+
+        private void Employees_Load(object sender, EventArgs e)
+        {
+            cbxDepartment.Items.Add("HR Department");
+            cbxDepartment.Items.Add("IT Department");
+        }
+
+        private void buttonBrowsePic_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

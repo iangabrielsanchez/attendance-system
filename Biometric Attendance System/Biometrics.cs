@@ -65,7 +65,7 @@ namespace Biometric_Attendance_System
 
         public bool Verify(ref object template, object verTemplate)
         {
-            return engine.VerFinger(ref template, verTemplate, true, true);
+                return engine.VerFinger(ref template, verTemplate, true, true);
         }
 
         public void BeginEroll()

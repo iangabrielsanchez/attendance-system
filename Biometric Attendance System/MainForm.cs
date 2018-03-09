@@ -87,5 +87,11 @@ namespace Biometric_Attendance_System
             
         }
 
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            Program.AttendanceMonitor.Show();
+            Program.biometrics.engine.EndEngine();
+            this.Hide();
+        }
     }
 }

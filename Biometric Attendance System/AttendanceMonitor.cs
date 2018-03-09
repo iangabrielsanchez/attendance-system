@@ -8,9 +8,37 @@ namespace Biometric_Attendance_System
     {
         int timeout = 10;
         int timeBeforeTimeout = 0;
+        Biometrics biometrics;
         public AttendanceMonitor()
         {
             InitializeComponent();
+            
+        }
+
+        private void Engine_OnCapture(bool ActionResult, object ATemplate)
+        {
+            biometrics.Beep();
+            bool output = false;
+            Employee[] employees = Employee.GetEmployees();
+            foreach (var employee in employees)
+            {
+                object template = null;
+                Program.biometrics.engine.DecodeTemplate(employee.Fingerprint, ref template);
+                output = Program.biometrics.Verify(ref template, ATemplate);
+                if (output)
+                {
+                    MessageBox.Show(employee.FirstName);
+                    break;
+                }
+            }
+            if (output)
+            {
+                biometrics.Success();
+            }
+            else
+            {
+                biometrics.Fail();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -60,6 +88,12 @@ namespace Biometric_Attendance_System
         private void button2_Click(object sender, EventArgs e)
         {
             Program.MainForm.Show();
+        }
+
+        private void AttendanceMonitor_Load(object sender, EventArgs e)
+        {
+            biometrics = new Biometrics();
+            biometrics.engine.OnCapture += Engine_OnCapture;
         }
     }
 }

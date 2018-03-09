@@ -47,9 +47,11 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.profilePicture = new System.Windows.Forms.PictureBox();
             this.buttonClearPic = new System.Windows.Forms.Button();
             this.buttonBrowsePic = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBoxFingerprint = new System.Windows.Forms.PictureBox();
             this.buttonRegisterFinger = new System.Windows.Forms.Button();
             this.buttonClearFinger = new System.Windows.Forms.Button();
             this.txtPagibig = new System.Windows.Forms.TextBox();
@@ -84,8 +86,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.profilePicture = new System.Windows.Forms.PictureBox();
-            this.pictureBoxFingerprint = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -93,8 +93,8 @@
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFingerprint)).BeginInit();
             this.SuspendLayout();
             // 
@@ -285,6 +285,18 @@
             this.panel3.Size = new System.Drawing.Size(160, 231);
             this.panel3.TabIndex = 40;
             // 
+            // profilePicture
+            // 
+            this.profilePicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.profilePicture.Image = global::Biometric_Attendance_System.Properties.Resources.user;
+            this.profilePicture.InitialImage = global::Biometric_Attendance_System.Properties.Resources.avatar;
+            this.profilePicture.Location = new System.Drawing.Point(5, 5);
+            this.profilePicture.Name = "profilePicture";
+            this.profilePicture.Size = new System.Drawing.Size(150, 150);
+            this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.profilePicture.TabIndex = 0;
+            this.profilePicture.TabStop = false;
+            // 
             // buttonClearPic
             // 
             this.buttonClearPic.AutoSize = true;
@@ -306,6 +318,7 @@
             this.buttonBrowsePic.TabIndex = 0;
             this.buttonBrowsePic.Text = "Browse";
             this.buttonBrowsePic.UseVisualStyleBackColor = true;
+            this.buttonBrowsePic.Click += new System.EventHandler(this.buttonBrowsePic_Click);
             // 
             // panel2
             // 
@@ -317,6 +330,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(160, 268);
             this.panel2.TabIndex = 39;
+            // 
+            // pictureBoxFingerprint
+            // 
+            this.pictureBoxFingerprint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxFingerprint.Image = global::Biometric_Attendance_System.Properties.Resources.fingerprint;
+            this.pictureBoxFingerprint.InitialImage = null;
+            this.pictureBoxFingerprint.Location = new System.Drawing.Point(5, 5);
+            this.pictureBoxFingerprint.Name = "pictureBoxFingerprint";
+            this.pictureBoxFingerprint.Size = new System.Drawing.Size(150, 190);
+            this.pictureBoxFingerprint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxFingerprint.TabIndex = 16;
+            this.pictureBoxFingerprint.TabStop = false;
             // 
             // buttonRegisterFinger
             // 
@@ -670,30 +695,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Employee No.:";
             // 
-            // profilePicture
-            // 
-            this.profilePicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.profilePicture.Image = global::Biometric_Attendance_System.Properties.Resources.user;
-            this.profilePicture.InitialImage = global::Biometric_Attendance_System.Properties.Resources.avatar;
-            this.profilePicture.Location = new System.Drawing.Point(5, 5);
-            this.profilePicture.Name = "profilePicture";
-            this.profilePicture.Size = new System.Drawing.Size(150, 150);
-            this.profilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.profilePicture.TabIndex = 0;
-            this.profilePicture.TabStop = false;
-            // 
-            // pictureBoxFingerprint
-            // 
-            this.pictureBoxFingerprint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxFingerprint.Image = global::Biometric_Attendance_System.Properties.Resources.fingerprint;
-            this.pictureBoxFingerprint.InitialImage = null;
-            this.pictureBoxFingerprint.Location = new System.Drawing.Point(5, 5);
-            this.pictureBoxFingerprint.Name = "pictureBoxFingerprint";
-            this.pictureBoxFingerprint.Size = new System.Drawing.Size(150, 190);
-            this.pictureBoxFingerprint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxFingerprint.TabIndex = 16;
-            this.pictureBoxFingerprint.TabStop = false;
-            // 
             // Employees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,6 +703,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Employees";
             this.Size = new System.Drawing.Size(1069, 593);
+            this.Load += new System.EventHandler(this.Employees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -711,9 +713,9 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.profilePicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFingerprint)).EndInit();
             this.ResumeLayout(false);
 
