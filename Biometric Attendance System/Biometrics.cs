@@ -41,10 +41,8 @@ namespace Biometric_Attendance_System
         public Biometrics()
         {
             engine = new ZKFPEngX();
-            
             engine.SensorIndex = 0;
             Status = (EngineStatus) engine.InitEngine();
-            MessageBox.Show(Status.ToString());
             AddActions();
         }
 
@@ -104,7 +102,7 @@ namespace Biometric_Attendance_System
         public void Beep()
         {
             engine.ControlSensor(BEEP, SENSOR_ON);
-            engine.ControlSensor(BEEP, SENSOR_OFF);   
+            engine.ControlSensor(BEEP, SENSOR_OFF);
         }
 
         

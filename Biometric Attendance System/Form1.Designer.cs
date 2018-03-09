@@ -33,9 +33,9 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.nav = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonPayroll = new System.Windows.Forms.Button();
+            this.buttonSchedules = new System.Windows.Forms.Button();
+            this.buttonEmployees = new System.Windows.Forms.Button();
             this.containerParent = new System.Windows.Forms.Panel();
             this.container = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -95,9 +95,10 @@
             // 
             // nav
             // 
-            this.nav.Controls.Add(this.button3);
-            this.nav.Controls.Add(this.button2);
-            this.nav.Controls.Add(this.button1);
+            this.nav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.nav.Controls.Add(this.buttonPayroll);
+            this.nav.Controls.Add(this.buttonSchedules);
+            this.nav.Controls.Add(this.buttonEmployees);
             this.nav.Dock = System.Windows.Forms.DockStyle.Left;
             this.nav.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
             this.nav.Location = new System.Drawing.Point(0, 44);
@@ -105,50 +106,56 @@
             this.nav.Size = new System.Drawing.Size(209, 617);
             this.nav.TabIndex = 1;
             // 
-            // button3
+            // buttonPayroll
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
-            this.button3.Location = new System.Drawing.Point(0, 61);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(209, 32);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Payroll";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.MouseEnter += new System.EventHandler(this.Mouse_Enter);
-            this.button3.MouseLeave += new System.EventHandler(this.Mouse_Enter);
+            this.buttonPayroll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.buttonPayroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPayroll.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPayroll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.buttonPayroll.Location = new System.Drawing.Point(0, 61);
+            this.buttonPayroll.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonPayroll.Name = "buttonPayroll";
+            this.buttonPayroll.Size = new System.Drawing.Size(209, 32);
+            this.buttonPayroll.TabIndex = 2;
+            this.buttonPayroll.Text = "Payroll";
+            this.buttonPayroll.UseVisualStyleBackColor = true;
+            this.buttonPayroll.Click += new System.EventHandler(this.ActivateButton);
+            this.buttonPayroll.MouseEnter += new System.EventHandler(this.Mouse_Enter);
+            this.buttonPayroll.MouseLeave += new System.EventHandler(this.Mouse_Leave);
             // 
-            // button2
+            // buttonSchedules
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
-            this.button2.Location = new System.Drawing.Point(0, 30);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(209, 32);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Schedules";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.MouseEnter += new System.EventHandler(this.Mouse_Enter);
-            this.button2.MouseLeave += new System.EventHandler(this.Mouse_Enter);
+            this.buttonSchedules.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.buttonSchedules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSchedules.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSchedules.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.buttonSchedules.Location = new System.Drawing.Point(0, 30);
+            this.buttonSchedules.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSchedules.Name = "buttonSchedules";
+            this.buttonSchedules.Size = new System.Drawing.Size(209, 32);
+            this.buttonSchedules.TabIndex = 1;
+            this.buttonSchedules.Text = "Schedules";
+            this.buttonSchedules.UseVisualStyleBackColor = true;
+            this.buttonSchedules.Click += new System.EventHandler(this.ActivateButton);
+            this.buttonSchedules.MouseEnter += new System.EventHandler(this.Mouse_Enter);
+            this.buttonSchedules.MouseLeave += new System.EventHandler(this.Mouse_Leave);
             // 
-            // button1
+            // buttonEmployees
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
-            this.button1.Location = new System.Drawing.Point(0, -1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(209, 32);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Employees";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseEnter += new System.EventHandler(this.Mouse_Enter);
-            this.button1.MouseLeave += new System.EventHandler(this.Mouse_Enter);
+            this.buttonEmployees.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.buttonEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEmployees.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEmployees.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(154)))), ((int)(((byte)(217)))));
+            this.buttonEmployees.Location = new System.Drawing.Point(0, -1);
+            this.buttonEmployees.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonEmployees.Name = "buttonEmployees";
+            this.buttonEmployees.Size = new System.Drawing.Size(209, 32);
+            this.buttonEmployees.TabIndex = 0;
+            this.buttonEmployees.Text = "Employees";
+            this.buttonEmployees.UseVisualStyleBackColor = true;
+            this.buttonEmployees.Click += new System.EventHandler(this.ActivateButton);
+            this.buttonEmployees.MouseEnter += new System.EventHandler(this.Mouse_Enter);
+            this.buttonEmployees.MouseLeave += new System.EventHandler(this.Mouse_Leave);
             // 
             // containerParent
             // 
@@ -200,9 +207,9 @@
         private System.Windows.Forms.Panel containerParent;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Label labelUsername;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonEmployees;
+        private System.Windows.Forms.Button buttonSchedules;
+        private System.Windows.Forms.Button buttonPayroll;
         private System.Windows.Forms.Panel container;
     }
 }
