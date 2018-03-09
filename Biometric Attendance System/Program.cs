@@ -11,7 +11,7 @@ namespace Biometric_Attendance_System
     {
         public static Database Database;
         public static AttendanceMonitor AttendanceMonitor;
-        public static MainForm MainForm;
+        public static MainForm MainForm; 
         public static Biometrics biometrics = new Biometrics();
         public static SHA1 sha1 = SHA1.Create();
         /// <summary>
