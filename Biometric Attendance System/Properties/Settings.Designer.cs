@@ -25,7 +25,7 @@ namespace Biometric_Attendance_System.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("dev1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
         public string DatabaseUser {
             get {
                 return ((string)(this["DatabaseUser"]));
@@ -37,7 +37,7 @@ namespace Biometric_Attendance_System.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("developer")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DatabasePassword {
             get {
                 return ((string)(this["DatabasePassword"]));

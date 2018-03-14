@@ -10,26 +10,34 @@ namespace Biometric_Attendance_System.Model
     {
         public int Id;
         public int EmployeeId;
-        public DateTime Timelog;
+        public string Status;
+        public DateTime Timestamp;
 
-        public Attendance(int id, int employeeId, DateTime timelog)
+        public Attendance(int id, int employeeId, string status, DateTime timestamp)
         {
+
             Id = id;
             EmployeeId = employeeId;
-            Timelog = timelog;
+            Status = status;
+            Timestamp = timestamp;
         }
 
-        public static Attendance[] GetAttendances()
+        public static Attendance[] GetAttendances(int id)
         {
             var AttendanceList = new List<Attendance>();
-            var resultSet = Program.Database.GetData("SELECT * FROM attendance");
+            var resultSet = Program.Database.GetData("SELECT * FROM attendance where employee_id = @id",
+                new[]{
+                    new MySqlParameter("@id", id)
+                }
+            );
 
             while (resultSet.Read())
             {
                 var Attendance = new Attendance(
                     (int)resultSet["id"],
                     (int)resultSet["employee_id"],
-                    (DateTime)resultSet["timelog"]
+                    (string)resultSet["status"],
+                    (DateTime)resultSet["timestamp"]
                 );
                 AttendanceList.Add(Attendance);
             }
@@ -51,7 +59,8 @@ namespace Biometric_Attendance_System.Model
                 var Attendance = new Attendance(
                     (int)resultSet["id"],
                     (int)resultSet["employee_id"],
-                    (DateTime)resultSet["timelog"]
+                    (string)resultSet["status"],
+                    (DateTime)resultSet["timestamp"]
                 );
                 Program.Database.Commit();
                 return Attendance;
@@ -60,14 +69,34 @@ namespace Biometric_Attendance_System.Model
             return null;
         }
 
-        public static Attendance AddAttendance(int employeeId)
+        public static string GetLastStatus(int employeeId)
         {
-            var result = Program.Database.GetData("INSERT INTO attendance " +
-                "VALUES (null, @employeeId, null); " +
-                "SELECT LAST_INSERT_ID() as id; ",
+            var result = Program.Database.GetData(
+                "SELECT status FROM attendance WHERE employee_id = @employeeId ORDER BY id desc limit 1",
                 new[]
                 {
                     new MySqlParameter("@employeeId", employeeId)
+                }
+            );
+
+            if (result.Read())
+            {
+                string status = (string)result["status"];
+                Program.Database.Commit();
+                return status;
+            }
+            return null;
+        }
+
+        public static Attendance AddAttendance(int employeeId)
+        {
+            var result = Program.Database.GetData("INSERT INTO attendance " +
+                "VALUES (null, @employeeId, @status, now()); " +
+                "SELECT LAST_INSERT_ID() as id; ",
+                new[]
+                {
+                    new MySqlParameter("@employeeId", employeeId),
+                    new MySqlParameter("@status", GetLastStatus(employeeId) == "in"? "out":"in")
                 }
             );
             if (result.Read())

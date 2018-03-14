@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="DatabaseUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">dev1</Value>
+      <Value Profile="(Default)">root</Value>
     </Setting>
     <Setting Name="DatabasePassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">developer</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

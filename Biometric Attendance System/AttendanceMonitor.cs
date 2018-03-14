@@ -23,7 +23,8 @@ namespace Biometric_Attendance_System
 
         private void Engine_OnCapture(bool ActionResult, object ATemplate)
         {
-            
+
+            ResetLabelValues();
             bool output = false;
             Employee[] employees = Employee.GetEmployees();
             int employeenum = -1;
@@ -47,6 +48,7 @@ namespace Biometric_Attendance_System
             else
             {
                 biometrics.FailAsync();
+                pictureBox1.Image = null;
                 label3.Text = "UNKNOWN";
             }
         }
@@ -59,7 +61,8 @@ namespace Biometric_Attendance_System
                 label3.Text = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
                 Department department = Department.GetDepartment(employee.DepartmentId);
                 label4.Text = department.Name;
-                //label5.Text = employee.Status == 1 ? "Time In" : "Time Out";
+                Attendance attendance = Attendance.AddAttendance(emp);
+                label5.Text = attendance.Status == "out" ? "Time Out" : "Time In";
                 //employee.Status = employee.Status == 1 ? (ulong)0 : (ulong)1;
                 //Employee.EditEmployee(employee.Id, employee);
                 //Attendance.AddAttendance(employee.Id);
@@ -85,30 +88,7 @@ namespace Biometric_Attendance_System
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Employee employee = Employee.GetEmployee(int.Parse(textBox1.Text));
-                label3.Text = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName;
-                Department department = Department.GetDepartment(employee.DepartmentId);
-                label4.Text = department.Name;
-                //label5.Text = employee.Status == 1 ? "Time In" : "Time Out";
-                //employee.Status = employee.Status == 1 ? (ulong)0 : (ulong)1;
-                Employee.EditEmployee(employee.Id, employee);
-                Attendance.AddAttendance(employee.Id);
-                pictureBox1.Image = Properties.Resources.avatar;
-            }
-            catch(Exception)
-            {
-                label3.Text = "UNKNOWN";
-            }
-            finally
-            {
-                timeBeforeTimeout = 0;
-            }
-
-        }
+        
 
         private void ResetLabelValues()
         {

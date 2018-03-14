@@ -126,7 +126,9 @@ namespace Biometric_Attendance_System
             }
             catch (Exception ex)
             {
-                throw ex;
+                Program.Database.Commit();
+                return GetData(sql, parameters);
+                //throw ex;
             }
         }
 

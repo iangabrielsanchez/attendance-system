@@ -14,6 +14,8 @@ namespace Biometric_Attendance_System
     {
         Employees employees = new Employees() { Dock = DockStyle.Fill, Visible = true };
         Schedules schedules = new Schedules() { Dock = DockStyle.Fill, Visible = true };
+        Payroll payroll = new Payroll() { Dock = DockStyle.Fill, Visible = true };
+
         string activeButton = "";
         Color blue = Color.FromArgb(58, 154, 217);
         Color white = Color.FromArgb(255, 255, 255);
@@ -27,6 +29,7 @@ namespace Biometric_Attendance_System
         {
             container.Controls.Add(employees);
             container.Controls.Add(schedules);
+            container.Controls.Add(payroll);
             ActivateButton(buttonEmployees, null);
         }
 
@@ -81,6 +84,9 @@ namespace Biometric_Attendance_System
                 case "Schedules":
                     //container.Controls.Add(schedules);
                     schedules.BringToFront();
+                    break;
+                case "Payroll":
+                    payroll.BringToFront();
                     break;
                 default: break;
             }
